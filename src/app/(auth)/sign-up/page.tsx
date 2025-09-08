@@ -65,7 +65,8 @@ function page() {
         description: response.data.message,
       })
 
-      router.replace(`/verify/${username}`)
+       const usernameForUrl = encodeURIComponent(String(data.username).trim());
+    router.replace(`/verify/${usernameForUrl}`);
       setIsSubmitting(false)
     } catch (error) {
       const axiosError=error as AxiosError<ApiResponse>

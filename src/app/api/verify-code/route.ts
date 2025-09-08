@@ -6,13 +6,16 @@ export async function POST(request:Request){
     await dbConnect()
     try {
         const {username,code}=await request.json()
-        const decodedUsername=decodeURIComponent(username)
-        const user=await UserModel.findOne(({username:decodedUsername}))
+        console.log("to verify username 4",username)
+       const decodedUsername=decodeURIComponent(username)
+       console.log("decoded username",decodedUsername)
+        const user=await UserModel.findOne({username:username})
+        console.log("printing user ",user)
         if(!user){
             return Response.json(
                 {
                     success:false,
-                    message:"error verigying user"
+                    message:"error verigying user4"
                 },
                 {
                     status:500
@@ -56,17 +59,17 @@ export async function POST(request:Request){
                     message:"incorrect verification code"
                 },
                 {
-                    status:200
+                    status:401
                 }
             )
         }
 
     } catch (error) {
-        console.error("error verifying user",error)
+        console.error("error verifying user2",error)
         return Response.json(
             {
                 success:false,
-                message:"error verifying user"
+                message:"error verifying user2"
             },
             {
                 status:500
