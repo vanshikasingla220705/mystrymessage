@@ -18,7 +18,7 @@ const Navbar = () => {
                     <span className='mr-4'>welcome,{user?.username|| user.email}</span>
                     <Button  onClick={()=>signOut() }className="w-full md:w-auto bg-slate-100 text-black" variant='outline'>logout</Button></>
                 ):(
-                    <Link href='/sign-in'>
+                    <Link href='/sign-up'>
                         <Button className="w-full md:w-auto bg-slate-100 text-black" variant={'outline'}>Login</Button>
                     </Link>
                 )
