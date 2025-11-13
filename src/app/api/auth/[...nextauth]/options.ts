@@ -3,7 +3,6 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import dbConnect from "@/lib/dbConnect";
 import UserModel ,{ User as UserModelType } from "@/model/User";
-import Document from "next/document";
 
 
 export const authOptions:NextAuthOptions={
@@ -21,7 +20,7 @@ export const authOptions:NextAuthOptions={
                     return null;
                 }
                 try {
-                    const user=await UserModel.findOne({
+                    const user:any=await UserModel.findOne({
                         $or:[
                             {email:credentials.identifier},
                             {username:credentials.identifier}
