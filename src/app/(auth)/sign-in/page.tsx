@@ -48,7 +48,7 @@ function Page() {
         });
         }
         else{
-            toast.error("error", {
+            toast.error("error123", {
             description: result.error,
         });
         }
