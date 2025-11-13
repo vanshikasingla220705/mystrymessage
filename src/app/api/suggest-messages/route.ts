@@ -31,10 +31,19 @@ export async function POST(req: Request) {
     return new Response(stream, {
       headers: { 'Content-Type': 'text/plain; charset=utf-8' },
     });
-  } catch (error: any) {
-    return NextResponse.json(
-      { name: error.name, message: error.message },
-      { status: 500 }
-    );
-  }
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+        // Inside this block, TypeScript knows 'error' is an Error object
+        return NextResponse.json(
+            { name: error.name, message: error.message },
+            { status: 500 }
+        );
+    } else {
+        // Handle cases where a non-Error was thrown
+        return NextResponse.json(
+            { message: 'An unknown error occurred' },
+            { status: 500 }
+        );
+    }
+}
 }
