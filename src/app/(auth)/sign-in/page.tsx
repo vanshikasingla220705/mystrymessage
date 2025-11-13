@@ -17,7 +17,7 @@ import { Loader2 } from 'lucide-react';
 import { signInSchema } from '@/schemas/signInSchema'
 import { signIn } from 'next-auth/react'
 
-function page() {
+function Page() {
 
 
   const router=useRouter()
@@ -117,4 +117,4 @@ function page() {
   )
 }
 
-export default page
+export default Page
