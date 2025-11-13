@@ -18,7 +18,7 @@ const Page = () => {
     const [messages,setMessages]=useState<Message[]>([])
     const [isLoading,setIsLoading]=useState(false)
     const [isSwitchLoading,setIsSwitchLoading]=useState(false)
-
+    const [profileUrl,setProfileUrl]=useState('')
 
     const handleDeleteMessage=(messageId:string)=>{
         setMessages(messages.filter((message)=>message._id!==messageId))
@@ -93,10 +93,15 @@ const Page = () => {
     }
 
 
-    const username  =session?.user?.username  
-    //do more research
-     const baseUrl=`${window.location.protocol}//${window.location.host}`
-     const profileUrl=`${baseUrl}/u/${username}`
+    useEffect(() => {
+    if (!session?.user?.username) {
+      setProfileUrl('')
+      return
+    }
+    if (typeof window === 'undefined') return
+    const baseUrl = `${window.location.protocol}//${window.location.host}`
+    setProfileUrl(`${baseUrl}/u/${session.user.username}`)
+  }, [session?.user?.username])
 
 
      const copyToClipboard=()=>{
